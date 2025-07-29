@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const videoGameRoutes = require('/routes/videoGame');
 
 //Express app
 const app = express();
@@ -12,10 +13,8 @@ app.use((req, res, next) => {
     next()
 })
 
-
-app.get('/', (req, res) => {
-    res.json({mssg: 'Welcome to the app'})
-});
+//Calls all the routes from the file in the routes folder and runs them when called.
+app.use('/api.videogames', videoGameRoutes)
 
 //Listen for requests
 app.listen(process.env.PORT, () => {
