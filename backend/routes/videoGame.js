@@ -1,15 +1,14 @@
 const express = require('express')
 const Videogame = require('../models/VideogameModel')
 const {
-    createVideogame
+    createVideogame,
+    getAllVidegames
 } = require('../controllers/VideogameController')
 
 const router = express.Router()
 
 //Route to get all workouts
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all workouts'})
-})
+router.get('/', getAllVidegames)
 
 //GET a single workout
 router.get('/:id', (req, res) => {
