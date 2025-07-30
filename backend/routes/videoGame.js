@@ -17,7 +17,7 @@ router.post('/', (reg,res) => {
     res.json({mssg: 'POST a new videogame entry'})
 })
 
-//DELETE a videgame entry
+//DELETE a videgame entryq
 router.delete('/:id', (reg,res) => {
     res.json({mssg: 'DELETE a videogame entry'})
 })
