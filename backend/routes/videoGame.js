@@ -1,5 +1,8 @@
 const express = require('express')
 const Videogame = require('../models/VideogameModel')
+const {
+    createVideogame
+} = require('../controllers/VideogameController')
 
 const router = express.Router()
 
@@ -14,17 +17,7 @@ router.get('/:id', (req, res) => {
 })
 
 //POST a new videgame entry
-router.post('/', async (req,res) => {
-    const {title, genre, rating, overView} = req.body
-
-    try{
-        const videogame = await Videogame.create({title, genre, rating, overView})
-        res.status(200).json(videogame)
-    }
-    catch (error){
-        res.status(400).json({error: error.mssg})
-    }
-})
+router.post('/', createVideogame)
 
 //DELETE a videgame entryq
 router.delete('/:id', (reg,res) => {
