@@ -1,6 +1,26 @@
 # Node dependencies
 backend/node_modules/
+frontend/node_modules
+frontend/pnp.pnp.js
+
 node_modules
 
 # Environment variables
 backend/.env
+
+# testing
+frontend/coverage
+
+# production
+frontend/build
+
+# misc
+frontend.DS_Store
+frontend.env.local
+frontend.env.development.local
+frontend.env.test.local
+frontend.env.production.local
+
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
