@@ -14,13 +14,13 @@ const getVideogames = async (req, res) => {
     const { id } = req.params
 
     if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "No such workout"})
+        return res.status(404).json({error: "No such videogame"})
     }
 
     const videogame = await Videogame.findById(id)
 
     if(!videogame){
-        return res.status(400).json({error: "No such workout"})
+        return res.status(400).json({error: "No such videogame"})
     }
 
     res.status(200).json(videogame)
@@ -41,11 +41,45 @@ const createVideogame = async (req, res) => {
 }
 
 //Update a Videogame entry function
+const updateVideogame = async (req, res) => {
+    const {id} = req.params
 
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: "No such videogame"})
+    }   
+    
+    const videogame = await Videogame.findOneAndUpdate({_id: id}, {
+        ...req.body
+    })
+
+    if(!videogame){
+        return res.status(400).json({error: "No such videogame"})
+    }
+
+    res.status(200).json(videogame)    
+}
 //Delete a Videogame entry function
+const deletVideogame = async (req, res) =>{
+    const {id} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: "No such videogame"})
+    }
+
+    const videogame = await Videogame.findOneAndDelete({_id: id})
+
+    if(!videogame){
+        return res.status(400).json({error: "No such videogame"})
+    }
+
+    res.status(200).json(videogame)
+    
+}
 
 module.exports = {
     createVideogame,
     getAllVidegames,
-    getVideogames
+    getVideogames,
+    updateVideogame,
+    deletVideogame
 }

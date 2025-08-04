@@ -3,7 +3,9 @@ const Videogame = require('../models/VideogameModel')
 const {
     createVideogame,
     getAllVidegames,
-    getVideogames
+    getVideogames,
+    updateVideogame,
+    deletVideogame
 } = require('../controllers/VideogameController')
 
 const router = express.Router()
@@ -18,13 +20,9 @@ router.get('/:id', getVideogames)
 router.post('/', createVideogame)
 
 //DELETE a videgame entryq
-router.delete('/:id', (reg,res) => {
-    res.json({mssg: 'DELETE a videogame entry'})
-})
+router.delete('/:id', deletVideogame)
 
 //UPDATE a videgame entry
-router.patch('/:id', (reg,res) => {
-    res.json({mssg: 'UPDATE a videogame entry'})
-})
+router.patch('/:id', updateVideogame)
 
 module.exports = router
