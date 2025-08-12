@@ -3,12 +3,14 @@ require('dotenv').config();
 const express = require('express');
 const videoGameRoutes = require('./routes/videoGame');
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 //Express app
 const app = express();
 
 //Middleware
 app.use(express.json())
+app.use(cors())
 
 //Logs request that are made
 //Moves on to the next request only if it is used.

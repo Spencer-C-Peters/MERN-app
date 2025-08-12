@@ -16,7 +16,7 @@ function App() {
               element={ <Home /> }
             />
           </Routes>
-        </div>'
+        </div>
       </BrowserRouter>
     </div>
   );
