@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react"
 
+//Components
+import VideogameEntries from '../components/VideogameEntries'
+import VideogameForm from '../components/VideogameForm'
+
 const Home = () => {
 
     const [videogames, setVideogames] = useState(null)
@@ -7,7 +11,7 @@ const Home = () => {
 useEffect(() => {
     const fetchEntries = async () => {
         try {
-            const response = await fetch('http://localhost:4000/api/videogames');
+            const response = await fetch('/api/videogames')
             const json = await response.json()
 
             if (response.ok) {
@@ -28,9 +32,10 @@ useEffect(() => {
     <div className="home">
         <div className="videogames">
             {videogames && videogames.map((videogame) => (
-                <p key={videogame._id}>{videogame.title}</p>
+                <VideogameEntries key={videogame._id} videogame={videogame} /> 
             ))}
         </div>
+        <VideogameForm />
     </div>
     )
 }

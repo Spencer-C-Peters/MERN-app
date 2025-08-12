@@ -36,7 +36,7 @@ const createVideogame = async (req, res) => {
         res.status(200).json(videogame)
     }
     catch (error){
-        res.status(400).json({error: error.mssg})
+        res.status(400).json({error: error.message})
     }
 }
 
