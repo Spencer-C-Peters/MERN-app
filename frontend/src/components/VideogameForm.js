@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { useVideogameContext } from '../hooks/useVideogameContexts'
 
 const VideogameForm = () => {
+    const { dispatch } = useVideogameContext()
+
     const [title, setTitle] = useState('')
     const [genre, setGenre] = useState('')
     const [rating, setRating] = useState('')
@@ -31,6 +34,7 @@ const VideogameForm = () => {
             setOverview('')
             setError(null)
             console.log('New Entry Created', json)
+            dispatch({type: 'CREATE_VIDEOGAME', payload: json})
         }
     }
 

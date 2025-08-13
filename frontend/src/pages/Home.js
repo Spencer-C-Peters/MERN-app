@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useVideogameContext } from "../hooks/useVideogameContexts"
 
 //Components
 import VideogameEntries from '../components/VideogameEntries'
@@ -6,7 +7,7 @@ import VideogameForm from '../components/VideogameForm'
 
 const Home = () => {
 
-    const [videogames, setVideogames] = useState(null)
+    const { videogames, dispatch} = useVideogameContext()
 
 useEffect(() => {
     const fetchEntries = async () => {
@@ -16,7 +17,7 @@ useEffect(() => {
 
             if (response.ok) {
                 console.log("Fetched data:", json);
-                setVideogames(json)
+                dispatch({type: 'SET_VIDEOGAMES', payload: json})
             } else {
                 console.error("Failed to fetch:", json)
             }
