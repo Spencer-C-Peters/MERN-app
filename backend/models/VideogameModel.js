@@ -19,6 +19,10 @@ const videoGameSchema = new Schema({
     overView: {
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        required: false
     }
 }, {timestamps: true})
 

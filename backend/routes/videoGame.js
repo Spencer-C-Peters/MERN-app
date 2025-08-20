@@ -1,5 +1,6 @@
 const express = require('express')
 const Videogame = require('../models/VideogameModel')
+const multer = require('multer')
 const {
     createVideogame,
     getAllVidegames,
@@ -8,6 +9,7 @@ const {
     deletVideogame
 } = require('../controllers/VideogameController')
 
+const upload = multer({dest: 'uploads/'})
 const router = express.Router()
 
 //Route to get all workouts
@@ -17,7 +19,7 @@ router.get('/', getAllVidegames)
 router.get('/:id', getVideogames)
 
 //POST a new videgame entry
-router.post('/', createVideogame)
+router.post('/', upload.single('image'), createVideogame)
 
 //DELETE a videgame entryq
 router.delete('/:id', deletVideogame)

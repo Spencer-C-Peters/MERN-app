@@ -1,6 +1,7 @@
 const { json } = require('express')
 const Videogame = require('../models/VideogameModel')
 const mongoose = require('mongoose')
+const cloudinary = require('../utils/cloudinary')
 
 //Get all Videgames function
 const getAllVidegames = async (req, res) => {
@@ -29,6 +30,7 @@ const getVideogames = async (req, res) => {
 //Create a new Videogame entry function
 const createVideogame = async (req, res) => {
     const {title, genre, rating, overView} = req.body
+    let imageUrl = null
 
     let emptyFields = []
 
@@ -54,7 +56,19 @@ const createVideogame = async (req, res) => {
 
     //Add a document to the database
     try{
-        const videogame = await Videogame.create({title, genre, rating, overView})
+
+        if(req.file){
+            const result = await cloudinary.uploader.upload(req.file.path)
+            imageUrl = result.secure_url
+        }
+
+        const videogame = await Videogame.create({
+            title, 
+            genre, 
+            rating: Number(rating), 
+            overView, 
+            image: 
+            imageUrl})
         res.status(200).json(videogame)
     }
     catch (error){

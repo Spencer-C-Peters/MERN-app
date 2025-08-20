@@ -20,10 +20,18 @@ const VideogameEntries = ({ videogame }) => {
 
     return(
         <div className="videogame-details">
+            {videogame.image && (
+                <img
+                    src={videogame.image}
+                    alt={videogame.title}
+                    className='videogame-image'
+                    style={{ maxWidth: "200px", borderRadius: "8px", marginBottom: "10px" }}
+                />
+            )}
             <h4>{videogame.title}</h4>
-            <p><strong>Genre: </strong></p>
-            <p><strong>Rating: </strong></p>
-            <p><strong>Overview: </strong></p>
+            <p><strong>Genre: </strong>{videogame.genre}</p>
+            <p><strong>Rating: </strong>{videogame.rating}</p>
+            <p><strong>Overview: </strong>{videogame.overView}</p>
             <p>{formatDistanceToNow(new Date(videogame.createdAt), {addSuffix: true})}</p>
             <span className='material-symbols-outlined' onClick={handleClick}>delete</span>
         </div>
