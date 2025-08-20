@@ -1,5 +1,8 @@
 import { useVideogameContext } from '../hooks/useVideogameContexts'
 
+//date fns
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+
 const VideogameEntries = ({ videogame }) => {
     const { dispatch } = useVideogameContext()
 
@@ -21,7 +24,7 @@ const VideogameEntries = ({ videogame }) => {
             <p><strong>Genre: </strong></p>
             <p><strong>Rating: </strong></p>
             <p><strong>Overview: </strong></p>
-            <p>{videogame.createdAt}</p>
+            <p>{formatDistanceToNow(new Date(videogame.createdAt), {addSuffix: true})}</p>
             <span className='material-symbols-outlined' onClick={handleClick}>delete</span>
         </div>
     )

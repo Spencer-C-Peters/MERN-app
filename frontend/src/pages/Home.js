@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useVideogameContext } from "../hooks/useVideogameContexts"
 
 //Components
@@ -27,7 +27,7 @@ useEffect(() => {
     }
 
     fetchEntries()
-}, [])
+}, [dispatch])
 
     return (
     <div className="home">
