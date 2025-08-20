@@ -30,6 +30,28 @@ const getVideogames = async (req, res) => {
 const createVideogame = async (req, res) => {
     const {title, genre, rating, overView} = req.body
 
+    let emptyFields = []
+
+    if(!title){
+        emptyFields.push('title')
+    }
+
+    if(!genre){
+        emptyFields.push('genre')
+    }
+
+    if(!rating){
+        emptyFields.push('rating')
+    }
+
+    if(!overView){
+        emptyFields.push('overView')
+    }
+
+    if(emptyFields.length > 0){
+        return res.status(400).json({error: 'Please fill in all the fields', emptyFields})
+    }
+
     //Add a document to the database
     try{
         const videogame = await Videogame.create({title, genre, rating, overView})

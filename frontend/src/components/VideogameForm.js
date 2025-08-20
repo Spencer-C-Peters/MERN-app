@@ -9,6 +9,7 @@ const VideogameForm = () => {
     const [rating, setRating] = useState('')
     const [overView, setOverview] = useState('')
     const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -26,6 +27,7 @@ const VideogameForm = () => {
 
         if(!response.ok){
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
         if(response.ok){
             setTitle('')
@@ -33,6 +35,7 @@ const VideogameForm = () => {
             setRating('')
             setOverview('')
             setError(null)
+            emptyFields([])
             console.log('New Entry Created', json)
             dispatch({type: 'CREATE_VIDEOGAME', payload: json})
         }
@@ -47,24 +50,28 @@ const VideogameForm = () => {
             type="text"
             onChange={(e) => setTitle(e.target.value)}
             value={title} 
+            className={emptyFields.includes('title') ? 'error': ''}
         />
         <label>Genre</label>
         <input
             type="text"
             onChange={(e) => setGenre(e.target.value)}
             value={genre} 
+            className={emptyFields.includes('genre') ? 'error': ''}
         />
         <label>Rating</label>
         <input
             type="number"
             onChange={(e) => setRating(e.target.value)}
             value={rating} 
+            className={emptyFields.includes('rating') ? 'error': ''}
         />
         <label>Overview</label>
         <input
             type="text"
             onChange={(e) => setOverview(e.target.value)}
             value={overView} 
+            className={emptyFields.includes('overView') ? 'error': ''}
         />
 
         <button>Create Entry</button>
