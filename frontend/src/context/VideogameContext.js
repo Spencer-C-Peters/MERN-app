@@ -12,6 +12,10 @@ export const videogameReducer = (state, action) => {
             return{
                 videogames: [action.payload, ...state.videogames]
             }
+        case 'DELETE_VIDEOGAME':
+            return{
+                videogames: state.videogames.filter((w) => w._id !== action.payload._id)
+            }
         default:
             return state
     }
